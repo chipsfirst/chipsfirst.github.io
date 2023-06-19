@@ -1,1 +1,1 @@
-👉 Hello and welcome for my simple blog for TTRPG, programming and more =) 👈
+👉 Добро пожаловать в мой небольшой блог 👈
