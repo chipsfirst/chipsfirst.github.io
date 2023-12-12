@@ -45,7 +45,7 @@ tags: [post]
 
 ##
 
- ![town](https://i.pinimg.com/564x/1d/46/ed/1d46ed08d0bfc77485147c8dee9965f6.jpg) {width:325px,mix-blend-mode:multiply}
+ ![town](https://i.pinimg.com/564x/1d/46/ed/1d46ed08d0bfc77485147c8dee9965f6.jpg) 
 
 
 ### Исследование персонажа с помощью подсказок
@@ -102,5 +102,6 @@ tags: [post]
 
 ##### Оригинал статьи by Mike Shea
 [Roleplaying Between Sessions](https://slyflourish.com/roleplaying_between_sessions.html)
+
 
 
