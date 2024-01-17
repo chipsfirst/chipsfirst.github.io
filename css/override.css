@@ -3,6 +3,11 @@ hr {
   margin-bottom: 20px;
 }
 
+iframe {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Post navigation links */
 .post_navi {
   display: flex;
