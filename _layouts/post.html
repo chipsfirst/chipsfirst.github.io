@@ -40,13 +40,7 @@ layout: default
       <h2 class="post-subtitle">{{ page.subtitle | escape }}</h2>
     {% endif %}
     
-    {% if page.tags.size > 0 %}
-      <div class="post-tags">
-        {% for tag in page.tags %}
-          <span class="tag">{{ tag }}</span>
-        {% endfor %}
-      </div>
-    {% endif %}
+    
   </header>
 
   <div class="share-links" aria-label="Share options">
