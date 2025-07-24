@@ -1,30 +1,159 @@
 ---
 layout: default
 ---
-<link href="/css/override.css" rel="stylesheet" type="text/css">
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+{% assign author = page.author | default: site.author %}
+{% assign reading_time = content | number_of_words | divided_by: 180 | at_least: 1 %}
 
+<link href="/css/override.css" rel="stylesheet" type="text/css" media="all">
+<link rel="preload" href="/css/override.css" as="style">
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting" aria-label="Blog post">
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
-    <p class="post-meta">
+    <div class="post-meta-container">
       <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         {{ page.date | date: date_format }}
       </time>
-      {% assign author = page.author | default: site.author %}
+      
       {%- if author -%}
-        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ author }}</span></span>
-      {%- endif -%}</p>
+        <span class="post-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-author h-card" itemprop="name">{{ author }}</span>
+        </span>
+      {%- endif -%}
+      
+      <span class="reading-time" aria-label="Estimated reading time">
+        {{ reading_time }} min read
+      </span>
+      
+      {% if page.last_modified_at %}
+        <span class="last-updated" title="Last updated">
+          Updated: {{ page.last_modified_at | date: date_format }}
+        </span>
+      {% endif %}
+    </div>
+
+    <h1 class="post-title p-name" itemprop="name headline">
+      {{ page.title | escape }}
+    </h1>
+    
+    {% if page.subtitle %}
+      <h2 class="post-subtitle">{{ page.subtitle | escape }}</h2>
+    {% endif %}
+    
+    {% if page.tags.size > 0 %}
+      <div class="post-tags">
+        {% for tag in page.tags %}
+          <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
   </header>
 
-  <div class="share-links">
+  <div class="share-links" aria-label="Share options">
     {% include sharelinks.html %}
   </div>
 
   <div class="post-content e-content" itemprop="articleBody">
+    {% if page.toc %}
+      <details class="toc-container" aria-label="Table of Contents">
+        <summary><strong>Table of Contents</strong></summary>
+        {% include toc.html html=content %}
+      </details>
+    {% endif %}
+    
     {{ content }}
-    {% include navlinks.html %}
+    
+    <div class="post-navigation">
+      {% include navlinks.html %}
+    </div>
+    
+    {% if site.show_related_posts %}
+      <div class="related-posts">
+        <h3>Related Posts</h3>
+        {% include related_posts.html %}
+      </div>
+    {% endif %}
   </div>
+
+  <footer class="post-footer">
+    {% if site.disqus.shortname %}
+      <div class="comments-container">
+        {% include disqus_comments.html %}
+      </div>
+    {% endif %}
+    
+    <div class="post-license">
+      <p>This work is licensed under a <a rel="license" href="{{ site.license_url }}">{{ site.license_name }}</a>.</p>
+    </div>
+  </footer>
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
+
+<style>
+  .post-header {
+    margin-bottom: 2rem;
+  }
+  
+  .post-meta-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+  
+  .post-title {
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  
+  .post-subtitle {
+    margin-top: 0;
+    color: var(--text-muted);
+    font-weight: normal;
+  }
+  
+  .post-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  
+  .tag {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+  
+  .reading-time::before {
+    content: "·";
+    margin: 0 0.25rem;
+  }
+  
+  .toc-container {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: var(--toc-bg);
+    border-radius: 4px;
+  }
+  
+  .post-navigation {
+    margin: 3rem 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+  }
+  
+  .post-license {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+</style>
