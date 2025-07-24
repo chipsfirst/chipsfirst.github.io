@@ -1,42 +1,88 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#ffffff">
+  
   {%- seo -%}
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="{{ "/assets/main.css" | relative_url }}" as="style">
+  
+  <!-- CSS -->
   <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
   {%- feed_meta -%}
+  
+  <!-- Favicon with modern approach -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <!-- Highlight.js optimized loading -->
+  <link rel="preload" href="/js/highlightjs/highlight.min.js" as="script">
+  <link rel="preload" href="/js/highlightjs/styles/github.min.css" as="style">
+  
+  <link rel="stylesheet" href="/js/highlightjs/styles/github.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="/js/highlightjs/styles/github.min.css"></noscript>
+  
+  <!-- Analytics -->
   {%- if jekyll.environment == 'production' and site.google_analytics -%}
     {%- include google-analytics.html -%}
   {%- endif -%}
-
-  <!-- highlight.js support -->
-  <link rel="stylesheet" href="/js/highlightjs/styles/github.css">
-  <link rel="stylesheet" href="/js/highlightjs/styles/ssms.css" />
-
-  <script type="text/javascript" src="/js/highlightjs/highlight.min.js"></script>
-
-  <script type="text/javascript" src="/js/highlightjs/languages/plaintext.min.js"></script>
-  <script type="text/javascript" src="/js/highlightjs/languages/powershell.min.js"></script>
-  <script type="text/javascript" src="/js/highlightjs/languages/tsql.min.js"></script>
-
-  <script type="text/javascript"> hljs.highlightAll(); </script>
-  <!-- end highlight.js support -->
-
-  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/manifest.json">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-<meta name="theme-color" content="#ffffff">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+  
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://www.google-analytics.com">
+  
+  <!-- Scripts with defer and fallback -->
+  <script>
+    // Load highlight.js scripts dynamically
+    function loadHighlightJS() {
+      const scripts = [
+        '/js/highlightjs/highlight.min.js',
+        '/js/highlightjs/languages/plaintext.min.js',
+        '/js/highlightjs/languages/powershell.min.js',
+        '/js/highlightjs/languages/tsql.min.js'
+      ];
+      
+      scripts.forEach(src => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.defer = true;
+        document.head.appendChild(script);
+      });
+      
+      // Initialize after all scripts are loaded
+      window.addEventListener('load', function() {
+        if (window.hljs) {
+          hljs.highlightAll();
+          // Register languages explicitly for better reliability
+          hljs.registerLanguage('plaintext', window.hljsPlaintext);
+          hljs.registerLanguage('powershell', window.hljsPowershell);
+          hljs.registerLanguage('tsql', window.hljsTsql);
+        }
+      });
+    }
+    
+    // Load after critical content
+    window.addEventListener('DOMContentLoaded', loadHighlightJS);
+  </script>
+  
+  <!-- Fallback for non-JS users -->
+  <noscript>
+    <style>
+      /* Basic syntax highlighting fallback */
+      pre code {
+        color: #24292e;
+        background-color: #f6f8fa;
+        padding: 16px;
+        border-radius: 3px;
+        display: block;
+        overflow-x: auto;
+      }
+    </style>
+  </noscript>
 </head>
