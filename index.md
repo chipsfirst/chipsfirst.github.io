@@ -58,33 +58,11 @@ description: Блог о настольных ролевых играх, про�
     </div>
     
     <div class="all-posts-link">
-      <a href="/blog" class="btn">Все статьи →</a>
+      <a href="/_posts" class="btn">Все статьи →</a>
     </div>
   </section>
 
-  <section class="categories-section">
-    <h2 class="section-title">Основные темы</h2>
-    
-    <div class="categories-grid">
-      <a href="/categories/ttrpg" class="category-card">
-        <div class="category-icon">🎲</div>
-        <h3>Настольные РПГ</h3>
-        <p>Обзоры систем, советы по ведению игр, домашние правила</p>
-      </a>
-      
-      <a href="/categories/programming" class="category-card">
-        <div class="category-icon">💻</div>
-        <h3>Программирование</h3>
-        <p>Разработка, инструменты, туториалы</p>
-      </a>
-      
-      <a href="/categories/media" class="category-card">
-        <div class="category-icon">🎬</div>
-        <h3>Медиа</h3>
-        <p>Рецензии, аналитика, рекомендации</p>
-      </a>
-    </div>
-  </section>
+
 </main>
 
 <style>
