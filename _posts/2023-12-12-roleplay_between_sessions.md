@@ -1,8 +1,8 @@
 ---
 title: Ролевая игра между сессиями
 date: 2023-12-12
-category: [ttrpg]
-tags: [post]
+category: [НРИ]
+tags: [нри]
 ---
 
 

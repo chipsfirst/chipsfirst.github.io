@@ -1,8 +1,8 @@
 ---
 title: Тяжелые разговоры
 date: 2023-12-25
-category: [ttrpg]
-tags: [post]
+category: [НРИ]
+tags: [нри]
 ---
 
 # Тяжелые разговоры
