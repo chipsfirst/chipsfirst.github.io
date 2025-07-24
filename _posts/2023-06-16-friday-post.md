@@ -2,7 +2,7 @@
 title: Утро понедельника
 date: 2023-06-19
 categories: [Новости]
-tags: [News]     # TAG names should always be lowercase
+tags: [новости]     # TAG names should always be lowercase
 ---
 Всем привет. <br>
 Сегодня утро понедельника, а это значит, что пришло время для некоторых интересных видео:<br>
