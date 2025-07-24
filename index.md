@@ -58,7 +58,7 @@ description: Блог о настольных ролевых играх, про�
     </div>
     
     <div class="all-posts-link">
-      <a href="/archive.md" class="btn">Все статьи →</a>
+      <a href="/archive" class="btn">Все статьи →</a>
     </div>
   </section>
 
