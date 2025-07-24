@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Архив
+title: Все статьи
 ---
 
 {% for tag in site.tags %}
